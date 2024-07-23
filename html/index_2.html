@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>audio</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+  <script>
+	  function GetStatistic()
+	  {
+		document.getElementById("name").innerHTML = "Links 2 3 4 - Rammstein";
+		audioPlayer.setAttribute("src","Links 2 3 4 - Rammstein.mp3");
+		audioPlayer.play();
+		
+	  }
+  </script>	
+ </head> 
+ <body>
+  <p id="name">Пластинки - Дурной Вкус</p>
+  <audio src="" controls id="audioPlayer"></audio>
+  
+  <button onclick="GetStatistic();">Music</button> 
+  
+  <p id="demo2"></p>
+
+ </body>
+</html>

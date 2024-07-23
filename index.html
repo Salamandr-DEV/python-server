@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <link href="main.css" rel="stylesheet"/>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    </head>
+    <body>
+        
+        <div id="bg">
+            <div id="blackLayer"></div>
+            <img src="Poster1.jpg"/>
+        </div>
+       
+       <div id="main">
+        <div id="image">
+            <img src="Poster1.jpg"/>
+        </div>
+        <div id="player">
+            <div id="songTitle">Demo</div>
+            <div id="buttons">
+                <button id="pre" onclick="pre()"><img src="Pre.png" height="90%" width="90%"/></button>
+                <button id="play" onclick="playOrPauseSong()"><img src="Play.png"/></button>
+                <button id="next" onclick="next()"><img src="Next.png" height="90%" width="90%"/></button>
+            </div>
+            
+            <div id="seek-bar">
+                <div id="fill"></div>
+                <div id="handle"></div>
+            </div>
+        </div>
+        <div id="rating">
+            <button id="like"><img src="like.png"/></button>
+            <button id="dislike"><img src="dislike.png"></button>
+        </div>
+        <div id="name"> We love music</div>
+    </div>
+    </body>
+    <script type="text/javascript">
+    
+        var serverUrl =  'http://localhost:8080/filename' //'http://178.158.14.32:7777/filename'
+
+        var poster = ["Poster1.jpg","Poster2.jpg","Poster3.jpg","Poster4.jpg","Poster5.jpg",
+        "Poster6.jpg","Poster7.jpg","Poster8.jpg","Poster9.jpg","Poster10.jpg","Poster11.jpg",];
+        
+        var songTitle = document.getElementById("songTitle");
+        var fillBar = document.getElementById("fill");
+        
+        var song = new Audio();
+        var currentSong = 0;    // it point to the current song
+        
+        window.onload = playSong;   // it will call the function playSong when window is load
+        
+        function playSong(){
+
+            $.ajax({
+			type: "GET",
+			url: serverUrl,
+			success: function (data) 
+			{
+				songTitle.textContent = data;
+				console.log(data);
+				song.src = 'http://localhost:8080/music?' + data; //'http://178.158.14.32:7777/music?' + data;
+                song.play();
+			},
+			contentType: 'audio/mpeg',
+		    });
+        }
+        
+        function playOrPauseSong(){
+            
+            if(song.paused){
+                song.play();
+                $("#play img").attr("src","Pause.png");
+            }
+            else{
+                song.pause();
+                $("#play img").attr("src","Play.png");
+            }
+        }
+        
+        song.addEventListener('timeupdate',function(){ 
+            
+            var position = song.currentTime / song.duration;
+            
+            fillBar.style.width = position * 100 +'%';
+        });
+        
+        
+        function next(){
+            var minNumber = 0;
+            var maxNumber = 10; 
+            var randomnumber = Math.floor(Math.random() * (maxNumber + 1) + minNumber);    
+            
+            /*currentSong++;
+            if(currentSong > 2){
+                currentSong = 0;
+            }
+            alert(randomnumber)*/
+            playSong();
+            $("#play img").attr("src","Pause.png");
+            $("#image img").attr("src",poster[randomnumber]);
+            $("#bg img").attr("src",poster[randomnumber]);
+        }
+    
+        function pre(){
+            var minNumber = 0;
+            var maxNumber = 10; 
+            var randomnumber = Math.floor(Math.random() * (maxNumber + 1) + minNumber);    
+
+            /*currentSong--;
+            if(currentSong < 0){
+                currentSong = 2;
+            }*/
+            playSong();
+            $("#play img").attr("src","Pause.png");
+            $("#image img").attr("src",poster[randomnumber]);
+            $("#bg img").attr("src",poster[randomnumber]);
+        }
+    </script>  
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <link rel='stylesheet' href='main_new.css'>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+ </head> 
+ <body>
+
+  <div class="container">
+    <div class="glow">
+      <div class="text-container">
+        <br>
+        <span class="text">We love music</span>
+        <br>
+        <div class="playback_controls">
+          <button onclick="skip('back')"><img src="Pre.png" height="90%" width="90%"/><i class="fa fa-fast-backward"></i></button>
+          <button onclick="playpause()"><img src="Play.png" height="90%" width="90%"/><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
+          <button onclick="stop()"><img src="Pause.png" height="90%" width="90%"/><i class="fa fa-stop"></i></button>
+          <button onclick="skip('next')"><img src="Next.png" height="90%" width="90%"/><i class="fa fa-fast-forward"></i></button>
+        </div>
+        <br>
+        <div id="seekbar">
+          <input type="range" oninput="setPos(this.value)" id="seek" value="0" max="">
+        </div>
+        <br>
+        <div class="volume_controls">
+          <button id="mute" onclick="mute()"><img src="100%.png" height="50%" width="50%"/><i class="fa fa-volume-up"></i></button>
+          <input type="range" id="volume" oninput="setVolume(this.value)" min="0" max="1" step="0.01" value="1">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+
+var poster = ["Poster1.jpg","Poster2.jpg","Poster3.jpg","Poster4.jpg","Poster5.jpg",
+        "Poster6.jpg","Poster7.jpg","Poster8.jpg","Poster9.jpg","Poster10.jpg","Poster11.jpg",];
+
+    var song = new Audio();
+    var muted = false;
+    var vol = 1;
+
+    var serverUrl =  'http://localhost:8080/filename'
+    var songTitle = document.getElementById("songTitle");
+    song.type = 'audio/mpeg';
+
+    window.onload = playSong;
+
+    function playSong(){
+
+      $.ajax({
+          type: "GET",
+          url: serverUrl,
+          success: function (data) 
+          {
+              //songTitle.textContent = data;
+              console.log(data);
+              song.src = 'http://localhost:8080/music?' + data; //'http://178.158.14.32:7777/music?' + data;
+              song.play();
+          },
+          contentType: 'text/plain',
+          dataType: 'text',
+          crossDomain: true,
+        });  
+
+      }
+    //song.src = 'https://www.bensound.com/bensound-music/bensound-summer.mp3';//Audio file source url
+
+    function skip(time) {
+      if (time == 'back') {
+        song.currentTime = 0;
+        playSong();
+      } else if (time == 'next') {
+        song.currentTime = 0;
+        playSong();
+      }
+    }
+    function playpause() {
+      if (!song.paused) {
+        document.getElementById('mute').innerHTML = '<img src="Play.png" height="90%" width="90%"/><i class="fa fa-play"></i>';
+        song.pause();
+      } else {
+        song.play();
+        document.getElementById('mute').innerHTML = '<img src="Pause.png" height="90%" width="90%"/><i class="fa fa-play"></i>';
+      }
+    }
+    function stop() {
+      song.pause();
+      song.currentTime = 0;
+      document.getElementById('seek').value = 0;
+    }
+    function setPos(pos) {
+      song.currentTime = pos;
+    }
+    function mute() {
+      if (muted) {
+        song.volume = vol;
+        muted = false;
+        document.getElementById('volume').value = 1;
+        document.getElementById('mute').innerHTML = '<img src="100%.png" height="50%" width="50%"/><i class="fa fa-volume-up"></i>';
+      } else {
+        song.volume = 0;
+        muted = true;
+        document.getElementById('volume').value = 0;
+        document.getElementById('mute').innerHTML = '<img src="mute.png" height="50%" width="50%"/><i class="fa fa-volume-off"></i>';
+      }
+    }
+    function setVolume(volume) {
+      if(volume > 0.5)
+      {
+        document.getElementById('mute').innerHTML = '<img src="100%.png" height="50%" width="50%"/><i class="fa fa-volume-up"></i>';
+        song.volume = volume;
+        vol = volume;
+      }
+      if(volume < 0.5)
+      {
+        document.getElementById('mute').innerHTML = '<img src="50%.png" height="50%" width="50%"/><i class="fa fa-volume-up"></i>';
+        song.volume = volume;
+        vol = volume;
+      }
+      if(volume < 0.25)
+      {
+        document.getElementById('mute').innerHTML = '<img src="25%.png" height="50%" width="50%"/><i class="fa fa-volume-up"></i>';
+        song.volume = volume;
+        vol = volume;
+      }
+      if(volume == 0.0)
+      {
+        document.getElementById('mute').innerHTML = '<img src="mute.png" height="50%" width="50%"/><i class="fa fa-volume-up"></i>';
+        song.volume = volume;
+        vol = volume;
+      }
+
+    }
+    song.addEventListener('timeupdate',function() {
+      curtime = parseInt(song.currentTime,10);
+      document.getElementById('seek').max = song.duration;
+      document.getElementById('seek').value = curtime;
+    })
+  </script>
+</body>
+</html>

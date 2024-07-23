@@ -1,0 +1,209 @@
+<div id="bg">
+    <div id="blackLayer"></div>
+    <img src="Poster1.jpg"/>
+    #bg{
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      overflow: hidden;
+  }
+  #bg img{
+      height: 120vh;
+      width: 105%;
+      -webkit-filter:blur(5px);
+      position: absolute;
+      top:50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      z-index: 1;
+  }
+  #blackLayer{
+      height: 100vh;
+      width: 100%;
+      background-color: rgba(0,0,0,.2);
+      position: absolute;
+  }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+#bg{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+#bg img{
+    height: 120vh;
+    width: 105%;
+    -webkit-filter:blur(5px);
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+}
+#blackLayer{
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0,.2);
+    position: absolute;
+    z-index: 99;
+}
+#main{
+    height: 50%;
+    width: 25%;
+    background-color:#fff;
+    border-radius: 15px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 999;
+}
+#image img{
+    height: 50%;
+    width: 100%;
+    margin-top: -5px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+#player{
+    padding: 25px;
+    color:#333;
+}
+#songTitle{
+    width:80%;
+    text-align: center;
+    font-family: cursive;
+    font-size: 22px;
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#name{
+    width:80%;
+    text-align: center;
+    font-size: 60px;
+    position: absolute;
+    top:-25%;
+    left: 50%;
+    color:rgb(184, 3, 3);
+    border-radius: 15px;
+    background: rgba(211, 211, 211, 0.37); /* Цвет фона */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
+    padding: 10px;
+    transform: translate(-50%,-50%);
+}
+#buttons{
+    height: 13%;
+    width: 100%;
+    margin-top: 25%;
+    position: absolute;
+    top:10%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#play,#next,#pre{
+    width: 50px;
+    height: 50px;
+    border: 0;
+    background-color:rgb(167, 24, 24);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    top:50%;
+    left: 100%;
+    transform: translate(-50%,-50%);
+}
+#next{
+    width: 40px;
+    height: 40px;
+    left: 120%;
+}
+#pre{
+    width: 40px;
+    height: 40px;
+    left: 80%;
+}
+#like,#dislike{
+    border: 0;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    bottom:-25%;
+    transform: translate(-50%,-50%);
+}
+#like{
+    width: 60px;
+    height: 60px;
+    left: 65%;
+}
+#dislike{
+    width: 60px;
+    height: 60px;
+    left: 35%;
+}
+
+#like:hover {
+    box-shadow: inset 0 -1px 1px rgba(0,0,0,0), inset 0 1px 2px rgba(0,0,0,0), inset 0 0 0 60px rgba(255,255,0,.5);
+  }
+#like:active {
+    padding: calc(.25em + 1px) .5em calc(.25em - 1px);
+    border-color: rgba(177,159,0,1);
+    box-shadow: inset 0 -1px 1px rgba(0,0,0,.1), inset 0 1px 2px rgba(0,0,0,.3), inset 0 0 0 60px rgba(255,255,0,.45);
+  }
+
+#dislike:hover {
+    box-shadow: inset 0 -1px 1px rgba(0,0,0,0), inset 0 1px 2px rgba(0,0,0,0), inset 0 0 0 60px rgba(128, 128, 128, 0.5);
+  }
+#dislike:active {
+    padding: calc(.25em + 1px) .5em calc(.25em - 1px);
+    border-color: rgba(177,159,0,1);
+    box-shadow: inset 0 -1px 1px rgba(0,0,0,.1), inset 0 1px 2px rgba(0,0,0,.3), inset 0 0 0 60px rgba(114, 114, 114, 0.45);
+  }
+#play img,#next img,#pre img{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#seek-bar{
+    width: 90%;
+    height: 5px;
+    background-color:gray;
+    display: flex;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+#fill{
+    height: 5px;
+    background-color:rgb(167, 24, 24);
+    border-radius: 20px;
+}
+#handle{
+    width: 8px;
+    height: 8px;
+    background-color:rgb(167, 24, 24);
+    border-radius: 50%;
+    margin-left: -5px;
+    transform: scale(2);
+}

@@ -1,0 +1,101 @@
+.main{
+    height: 100%;
+    width: 100%;
+    background-color:rgba(0,0,0,0);
+    position: absolute;
+    z-index: 999;
+}
+
+.player{
+    margin-left: 400px;
+    padding-top: 50px;
+    padding-bottom: 50%;
+}
+
+.title{
+    width: 795px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    position: relative ;
+    font-size: 20px;
+    border-collapse: collapse;
+    border-spacing: 5px;
+    background: #ffffff;
+    border-radius: 5px;
+    border-color: #282542; 
+    margin-left: 400px;
+    color: #000000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title .movie_origin_title{
+    color: #585858;
+    font-size: 18px;
+}
+
+.info_img {
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    min-height: 70px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    position: relative;
+    display: inline-block;
+    margin-left: 400px;
+}
+
+.displayed{
+    display: inline-block;
+}
+
+table {
+    width: 600px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: left;
+    font-size: 12px;
+    position: relative ;
+    background: #ffffff;
+    border-radius: 5px;
+    border-color: #282542; 
+    padding-bottom: 5px;
+}
+
+tr {
+    vertical-align: top;
+    color: #ffffff;
+}
+
+td {
+    width: 300px;
+    color: #ffffff;
+}
+
+.movie_data{
+    color: #000000;
+}
+
+#info{
+    width: 780px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: justify;
+    position: relative ;
+    font-size: 14px;
+    border-collapse: collapse;
+    border-spacing: 5px;
+    background: #ffffff;
+    border-radius: 5px;
+    border-color: #282542; 
+    margin-left: 400px;
+}
+.movie_data_acter {
+    overflow: hidden;
+    color: #000000;
+}

@@ -1,0 +1,599 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Video Player</title>
+        <link rel="stylesheet" href="../kwg-video-player.css" type="text/css" />
+        <link rel="stylesheet" href="../film_test.css" type="text/css" />
+
+        <script src="../kwg-video-player.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="catalog/view/javascript/common2.js"></script>
+
+        <style type="text/css">    
+            * { margin: 0; padding: 0; }
+            p { padding: 10px; }
+            #left { position: absolute; left: 0; top: 0; width: 50%; }
+            #right { position: absolute; right: 0; top: 0; width: 50%; } 
+         </style>
+
+         <style type="text/css">    
+            * { margin: 0; padding: 0; }
+            p { padding: 10px; }
+            #left { position: absolute; left: 0; top: 0; width: 50%; }
+            #right { position: absolute; right: 0; top: 0; width: 50%; } 
+        </style>
+        <style type="text/css">    
+            body {
+                background-image: url(WM4.png);
+                background-size: 100%;
+                background-attachment: fixed;
+            }
+            #footer {
+                text-align: center;
+                position: fixed; /* Фиксированное положение */
+                left: 0; bottom: 0; /* Левый нижний угол */
+                padding: 10px; /* Поля вокруг текста */
+                background: #191e2b; /* Цвет фона */
+                color: #fff; /* Цвет текста */
+                width: 100%; /* Ширина слоя */
+            }
+         </style>
+
+        <script type="text/javascript">
+
+            function MyFunction()
+            {
+                var Elem="Фильм: " + document.films.title_film.value;      
+                alert(Elem);
+            }
+
+            function FilmFunction()
+            {
+                var Elem = document.films.title_film.value;      
+                    
+                alert("Film:" + Elem);
+
+                var serverUrl =  'http://localhost:8080/film?';
+                serverUrl += Elem;
+
+                $.ajax({
+                    type: "GET",
+                    url: serverUrl,
+                    success: function(data) 
+                    {
+                           // video1.src = data;
+                    },
+                });
+            }
+
+            function getUrlVars()
+            {
+                var vars = [], hash;
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                    hash = hashes[i].split('=');
+
+                    if($.inArray(hash[0], vars)>-1)
+                    {
+                        vars[hash[0]]+=","+hash[1];
+                    }
+                    else
+                    {
+                        vars.push(hash[0]);
+                        vars[hash[0]] = hash[1];
+                    }
+                }
+
+                return vars;
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <div class="main">
+            <div class="newtitle">
+                <a href="http://localhost:8080/demo_test.html" class="new_title">Watch movies</a>
+            </div>
+            <div>
+                <nav class="navigation">
+                    <ul>
+                        <li class="i1">
+                            <a class="link" href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/">
+                                Фильмы
+                                <i class="i-sprt dropdwn"></i>
+                            </a>
+                            <div class="new">
+                                <div class="submenu j1">
+                                    <ul class="left">
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/western/">Вестерны</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/family/">Семейные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/fantasy/">Фэнтези</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/biographical/">Биографические</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/arthouse/">Арт-хаус</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/action/">Боевики</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/military/">Военные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/detective/">Детективы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/crime/">Криминал</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/adventures/">Приключения</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/drama/">Драмы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/sport/">Спортивные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/fiction/">Фантастика</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/comedy/">Комедии</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/melodrama/">Мелодрамы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/thriller/">Триллеры</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/horror/">Ужасы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/musical/">Мюзиклы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/historical/">Исторические</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/documentary/">Документальные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/erotic/">Эротика</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/kids/">Детские</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/travel/">Путешествия</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/cognitive/">Познавательные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/short/">Короткометражные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/our/">Наши</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/ukrainian/">Украинские</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/films/foreign/">Зарубежные</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <li class="i2">
+                            <a class="link" href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/">
+                                Сериалы
+                                <i class="i-sprt dropdwn"></i>
+                            </a> 
+                            <div class="new">
+                                <div class="submenu j2">
+                                    <ul class="left">
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/military/">Военные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/action/">Боевики</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/arthouse/">Арт-хаус</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/melodrama/">Мелодрамы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/thriller/">Триллеры</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/horror/">Ужасы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/adventures/">Приключения</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/family/">Семейные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/fiction/">Фантастика</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/fantasy/">Фэнтези</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/drama/">Драмы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/sport/">Спортивные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/comedy/">Комедии</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/detective/">Детективы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/crime/">Криминал</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/historical/">Исторические</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/biographical/">Биографические</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/western/">Вестерны</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/documentary/">Документальные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/musical/">Музыкальные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/realtv/">Реальное ТВ</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/telecasts/">Телепередачи</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/erotic/">Эротика</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/russian/">Русские</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/ukrainian/">Украинские</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/series/foreign/">Зарубежные</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <li class="i3">
+                            <a class="link" href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/">
+                                Мультфильмы
+                                <i class="i-sprt dropdwn"></i>
+                            </a>
+                            <div class="new">
+                                <div class="submenu j3">
+                                    <ul class="left">
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/drama/">Драмы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/fairytale/">Сказки</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/action/">Боевики</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/comedy/">Комедии</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/family/">Семейные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/fiction/">Фантастика</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/fantasy/">Фэнтези</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/thriller/">Триллеры</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/horror/">Ужасы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/adventures/">Приключения</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/sport/">Спортивные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/cognitive/">Познавательные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/musical/">Мюзиклы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/kids/">Детские</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/anime/">Аниме</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/soyzmyltfilm/">Советские</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/multseries/">Мультсериалы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/adult/">Для взрослых</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/full-length/">Полнометражные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/our/">Наши</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/cartoons/foreign/">Зарубежные</a>
+                                        </li>
+                                </div>
+                            </div>
+                        <li class="i4">
+                            <a class="link" href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/">
+                                    Аниме
+                                <i class="i-sprt dropdwn"></i>
+                            </a>
+                            <div class="new">
+                                <div class="submenu j4">
+                                    <ul class="left">
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/military/">Военные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/drama/">Драмы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/detective/">Детективы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/thriller/">Триллеры</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/comedy/">Комедии</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/fiction/">Фантастика</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/fantasy/">Фэнтези</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/adventures/">Приключения</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/romance/">Романтические</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/historical/">Исторические</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/horror/">Ужасы</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/mystery/">Мистические</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/musical/">Музыкальные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/erotic/">Эротика</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/action/">Боевики</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/fighting/">Боевые искусства</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/samurai/">Самурайский боевик</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/sport/">Спортивные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/educational/">Образовательные</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/everyday/">Повседневность</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/parody/">Пародия</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/school/">Школа</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/kids/">Детские</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/fairytale/">Сказки</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/kodomo/">Кодомо</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/shoujoai/">Сёдзё-ай</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/shoujo/">Сёдзё</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/shounen/">Сёнэн</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/shounenai/">Сёнэн-ай</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/ecchi/">Этти</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/mahoushoujo/">Махо-сёдзё</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/demo_test.html?url=https://rezka.ag/animation/mecha/">Меха</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="input_films">
+                <form name="films" onkeypress="if(event.keyCode == 13) return false;" class='input_form'>
+                    <p><input type="text" placeholder="Search.." name="search"></p>
+                    <p><button id="button_title" type="button" onclick="GetFilms();">Search</button></p>
+                </form>
+            </div>
+            
+            <div class='title' id='title_id'>
+
+            </div>
+            <div class="b-post__infotable clearfix">
+                <div class="b-post__infotable_left">
+                    <div class='b-sidecover' id='info_img_id'>
+
+                    </div>
+                </div>
+                <div class="b-post__infotable_right">
+                    <div class="b-post__infotable_right_inner">
+                        <table  class="b-post__info" id = "films">
+                        </table> 
+                    </div>
+                </div>
+            </div>
+             
+            <p id="info"></p> 
+            <div class='player'>
+                <video id="video1" width="800" height="450" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+            </div>
+        </div>
+        <div class="fab">
+            <span class="fab-action-button">
+                  <i class="fab-action-button__icon"></i>
+              </span>
+            <ul class="fab-buttons">
+              <li class="fab-buttons__item">
+                <a href="https://ru-ru.facebook.com" class="fab-buttons__link" data-tooltip="Facebook">
+                  <i class="icon-material icon-material_fb"></i>
+                </a>
+              </li>
+              <li class="fab-buttons__item">
+                <a href="https://twitter.com" class="fab-buttons__link" data-tooltip="Twitter">
+                  <i class="icon-material icon-material_tw"></i>
+                </a>
+              </li>
+              <li class="fab-buttons__item">
+                <a href="https://vk.com" class="fab-buttons__link" data-tooltip="Vkontakte">
+                  <i class="icon-material icon-material_vk"></i>
+                </a>
+              </li>
+              <li class="fab-buttons__item">
+                <a href="https://www.instagram.com" class="fab-buttons__link" data-tooltip="Instagram">
+                  <i class="icon-material icon-material_inst"></i>
+                </a>
+              </li>
+            </ul>
+        </div>
+        <div id="footer">
+            Films were taken from the service
+            <a  href="https://rezka.ag" > HD rezka</a >
+        </div>
+
+        <script  type="text/javascript">
+            var video = new kwgVideo('#video1');
+
+            var url = getUrlVars()["url"];
+
+            var serverUrl = "http://localhost:8080/info_film?" + url
+
+                $.ajax({
+                    type: "GET",
+                    url: serverUrl,
+                    success: function(data) 
+                    {
+                        var ans = JSON.parse(data);
+                        console.log(ans);
+
+                        document.getElementById("title_id").innerHTML = "<p class='movie_title'>" +  ans.info[0].movie_title  + "</p><p class='movie_origin_title'>" +  ans.info[0].movie_origin_title  + "</p>";
+                        document.getElementById("info_img_id").innerHTML = "<img style='padding-bottom: 220px;' src = '" + ans.info[0].movie_image + "' height='250'>";
+                        document.getElementById("films").innerHTML = "";
+                        
+
+                        var FilmsData = "<tr></tr>";
+
+                        var max_info = ans.info.length;
+                        for(var i = 1; i < max_info-2; i++)
+                        {
+                            FilmsData += "<tr>"
+                            
+                            for(var j = 0; j < 2; j++)
+                            {
+                                if(i < max_info-2)
+                                {
+                                    if(j%2 == 0)
+                                    {
+                                        FilmsData += "<td><p class='movie_data_title'>" + ans.info[i].movie_data + "</p></td>";
+                                    }
+                                    if(j%2 == 1)
+                                    {
+                                        FilmsData += "<td><p class='movie_data'>" + ans.info[i].movie_data + "</p></td>";
+                                    }
+                                    if(j < 1)
+                                    {
+                                        if(i < max_info-2)
+                                        {
+                                            i++;
+                                        }
+                                    }
+                                } 
+                            }
+
+                            FilmsData += "</tr>";
+                        }
+                        FilmsData += "<tr><td><p class='movie_data'>" + ans.info[max_info-2].movie_data +  "</p></td></tr>";
+
+                        video1.src = ans.info[max_info-1].movie_link;
+
+                        document.getElementById("films").innerHTML += FilmsData;
+                        document.getElementById("info").innerHTML = ans.info[0].movie_info_text;
+                    },
+                });
+
+        </script>
+    </body>
+
+</html>
